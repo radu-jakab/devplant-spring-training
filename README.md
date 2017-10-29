@@ -35,7 +35,7 @@
 6. Swagger-ui
 - maven dependencies: springfox-swagger2, springfox-swagger-ui
 - @Configuration class
-'''
+```
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
@@ -47,7 +47,7 @@ public class SwaggerConfig {
 				.build();
 	}
 }
-'''
+```
 
 7. Entities and repos
 - create packages model and repo
