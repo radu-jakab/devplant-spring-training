@@ -50,18 +50,35 @@ public class SwaggerConfig {
 ```
 
 7. Entities and repos
-- create packages model and repo
 - maven dependencies: spring-boot-starter-data-jpa, h2
-- H2 in-memory database
-- author, book entities
+- H2 in-memory database (what it is, configuration)
+```
+spring:
+  jpa:
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+      path: '/h2-console'
+  datasource:
+    url: jdbc:h2:mem:spring-app;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driverClassName: org.h2.Driver
+    username: sa
+    password: 
+    database-platform: org.hibernate.dialect.H2Dialect
+```
+- author, book as entities
+- create package repo
 - author, book repos
+- @EnableJpaRepositories
+- relink services to use the repos
 
-8. The bottom-up approach
-- Library entity and repo, services and controller
-
-9. Seeding data
+8. Seeding data
 - commandline runner
 - seedData.sql
+
+9. The bottom-up approach
+- Library entity and repo, services and controller
 
 10. Validation
 

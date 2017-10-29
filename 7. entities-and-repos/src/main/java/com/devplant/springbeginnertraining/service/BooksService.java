@@ -1,50 +1,42 @@
 package com.devplant.springbeginnertraining.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.devplant.springbeginnertraining.model.Book;
+import com.devplant.springbeginnertraining.repo.BookRepository;
 
 //tells Spring that this is a component (bean)
 @Service
 public class BooksService {
 
-	// a list to hold all books
-	public static final List<Book> BOOKS = new ArrayList<>();
-
-	static {
-		BOOKS.add(AuthorService.BOOK1);
-		BOOKS.add(AuthorService.BOOK2);
-		BOOKS.add(AuthorService.BOOK3);
-	}
+	@Autowired
+	private BookRepository bookRepo;
 
 	/**
 	 * Returns the book with the given id, or null if none is found
 	 */
 	public Book getOne(long id) {
-		for (Book book : BOOKS) {
-			if (book.getId() == id)
-				return book;
-		}
-		return null;
+		return bookRepo.findOne(id);
 	}
 
 	/**
 	 * Returns all books
 	 */
 	public List<Book> getAll() {
-		return new ArrayList<>(BOOKS);
+		return bookRepo.findAll();
 	}
 
 	/**
 	 * Creates a book based on the entity provided. Returns the book created
 	 */
 	public Book create(Book book) {
-		book.setId(BOOKS.size() + 1);
-		BOOKS.add(book);
-		return book;
+		if (bookRepo.exists(book.getId()))
+			throw new IllegalArgumentException("Book already exists");
+
+		return update(book);
 	}
 
 	/**
@@ -52,15 +44,7 @@ public class BooksService {
 	 * exists. Returns the book if the ID was matched, or null otherwise
 	 */
 	public Book update(Book book) {
-		Book existing = getOne(book.getId());
-		if (existing == null)
-			return null;
-
-		existing.setTitle(book.getTitle());
-		existing.setShortDescription(book.getShortDescription());
-		existing.setAuthor(book.getAuthor());
-
-		return existing;
+		return bookRepo.save(book);
 	}
 
 	/**
@@ -68,11 +52,11 @@ public class BooksService {
 	 * and true if a book was found and deleted
 	 */
 	public boolean delete(long id) {
-		Book existing = getOne(id);
-		if (existing == null)
-			return false;
+		if (bookRepo.exists(id)) {
+			bookRepo.delete(id);
+			return true;
+		}
 
-		BOOKS.remove(existing);
-		return true;
+		return false;
 	}
 }
