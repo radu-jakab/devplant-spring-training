@@ -78,7 +78,10 @@ spring:
 - seedData.sql
 
 9. The bottom-up approach
-- Library entity and repo, services and controller
+- Lending entity and repo, services and controller; methods: show all lendings, show all lendings for client
+- Library entity and repo, services and controller; methods: show all books, lend book, return book
+- remove DataInitializer, create library record, some authors and books in seedData.sql 
+- @Transactional
 - JPQL
 
 10. Logging
