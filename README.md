@@ -79,6 +79,9 @@ spring:
 
 9. The bottom-up approach
 - Library entity and repo, services and controller
+- JPQL
+
+10. Logging
 
 10. Validation
 
