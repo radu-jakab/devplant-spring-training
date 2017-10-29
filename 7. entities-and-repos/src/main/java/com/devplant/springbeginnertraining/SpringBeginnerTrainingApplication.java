@@ -3,7 +3,7 @@ package com.devplant.springbeginnertraining;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-// configuration annotation that marks this as a runnable Spring Boot application
+//configuration annotation that marks this as a runnable Spring Boot application
 @SpringBootApplication
 public class SpringBeginnerTrainingApplication {
 

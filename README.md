@@ -8,7 +8,7 @@
 - discuss HTTP, AOP, Java Reflection
 
 1. Spring initializr
-Create a project using https://start.spring.io
+- Create a project using https://start.spring.io
 
 2. Hello world
 
@@ -17,28 +17,38 @@ Create a project using https://start.spring.io
 - data structure
 - functional requirements
 
-4. Entities and repos
+4. Controllers
+- create package controller
+- maven dependencies: lombok
 - lombok
+- author, book DOs
+- author, book CRUD endpoints
+- convention over configuration
+
+5. Services
+- author, book CRUD operations
+- singletons
+- faked static objects
+- rewrite controllers to use services
+- postman
+
+6. Swagger-ui
+
+7. Entities and repos
+- create packages model and repo
+- maven dependencies: spring-boot-starter-data-jpa, h2
 - H2 in-memory database
 - author, book entities
 - author, book repos
 
-5. Services
-- author, book CRUD operations
+8. The bottom-up approach
+- Library entity and repo, services and controller
 
-6. Controllers
-- author, book CRUD endpoints
-
-7. The top-down approach
-- Library controller, services, entity and repo
-
-8. Seeding data
+9. Seeding data
 - commandline runner
 - seedData.sql
 
-9. Swagger-ui
-
-9. Validation
+10. Validation
 
 10. Converters
 - DTOs and MapStruct
@@ -53,6 +63,11 @@ Create a project using https://start.spring.io
 
 13. Adding the GUI app
 
-14. Async operations, Spring scheduler
+14. Error handling
 
-15. Stuff that cool kids also do
+15. Async operations, Spring scheduler
+
+16. Stuff that cool kids also do
+- elastic search repos
+- docker integration
+-
