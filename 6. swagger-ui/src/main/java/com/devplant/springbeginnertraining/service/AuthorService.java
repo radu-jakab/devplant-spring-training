@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.devplant.springbeginnertraining.model.Author;
 import com.devplant.springbeginnertraining.model.Book;
 
-// tells Spring that this is a component (bean)
+//tells Spring that this is a component (bean)
 @Service
 public class AuthorService {
 

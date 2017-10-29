@@ -20,6 +20,7 @@ public class Book {
 
 	private String shortDescription;
 
+	// avoid circular reference at JSON serialization
 	@JsonIgnore
 	private Author author;
 }

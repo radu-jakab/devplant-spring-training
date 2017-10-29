@@ -33,6 +33,21 @@
 - postman
 
 6. Swagger-ui
+- maven dependencies: springfox-swagger2, springfox-swagger-ui
+- @Configuration class
+'''
+@Configuration
+@EnableSwagger2
+public class SwaggerConfig {
+	@Bean
+	public Docket api() {
+		return new Docket(DocumentationType.SWAGGER_2).select()
+				.apis(RequestHandlerSelectors.any())
+				.paths(PathSelectors.any())
+				.build();
+	}
+}
+'''
 
 7. Entities and repos
 - create packages model and repo
