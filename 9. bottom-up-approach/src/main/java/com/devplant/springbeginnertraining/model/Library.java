@@ -3,6 +3,7 @@ package com.devplant.springbeginnertraining.model;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -29,6 +30,9 @@ public class Library {
 	@GeneratedValue
 	private long id;
 
+	private String name;
+
+	@ElementCollection
 	private Map<Book, Integer> stocks;
 
 	@OneToMany(mappedBy = "library", fetch = FetchType.LAZY)

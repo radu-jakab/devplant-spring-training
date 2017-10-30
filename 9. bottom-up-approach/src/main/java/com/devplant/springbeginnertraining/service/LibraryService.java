@@ -35,6 +35,15 @@ public class LibraryService {
 		return lib.getStocks();
 	}
 
+	public void changeStocks(Book book, int newStock) {
+		Library lib = libraryRepo.findOne(LIBRARY_ID);
+		if (lib == null)
+			throw new IllegalArgumentException("Library not found");
+
+		lib.getStocks().put(book, newStock);
+		libraryRepo.save(lib);
+	}
+
 	public Lending lendBook(Book book, String clientName, LocalDate dueDate) {
 		// check clientName and dueDate are valid
 		if (clientName == null || clientName.isEmpty())
