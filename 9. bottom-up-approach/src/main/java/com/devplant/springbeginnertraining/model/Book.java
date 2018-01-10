@@ -10,11 +10,13 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 //lombok
 @Data
 @Builder
+@NoArgsConstructor
 @ToString(exclude = "author")
 // spring
 @Entity

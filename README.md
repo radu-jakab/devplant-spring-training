@@ -112,6 +112,10 @@ http://beanvalidation.org/1.0/spec/
 - honorable  mention: JSR-303
 
 12. i18n
+- add messages.properties files, move strings here
+- create a MessageService class, (discuss pros, cons & options)
+- in application classes, replace strings with MessageService.getMessage(...)
+- add the WebMVCConfig configuration class; configure locale change and messageSource
 
 13. Converters
 - DTOs and MapStruct

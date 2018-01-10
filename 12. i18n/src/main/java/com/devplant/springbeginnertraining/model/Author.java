@@ -9,6 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -33,8 +37,11 @@ public class Author {
 
 	// sample column configuration
 	@Column(name = "author_name", length = 128, unique = true)
+	@Size(min = 2, max = 128, message = "Author name must have between 2 and 128 characters")
 	private String name;
 
+	@NotNull(message = "Author bio cannot be null")
+	@NotEmpty(message = "Author bio cannot be empty")
 	private String bio;
 
 	@JsonManagedReference("authorBooks")

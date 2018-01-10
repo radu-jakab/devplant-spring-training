@@ -6,10 +6,12 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 // lombok
 @Data
 @Builder
+@NoArgsConstructor
 public class Author {
 
 	private long id;

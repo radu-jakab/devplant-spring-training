@@ -14,10 +14,12 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 // lombok
 @Data
 @Builder
+@NoArgsConstructor
 // spring
 @Entity
 @Table(name = "AUTHOR")
