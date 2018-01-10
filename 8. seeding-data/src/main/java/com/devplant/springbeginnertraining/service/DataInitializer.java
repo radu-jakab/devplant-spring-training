@@ -23,14 +23,17 @@ public class DataInitializer implements CommandLineRunner {
 	@Override
 	public void run(String... arg0) throws Exception {
 		// note ID's can be whatever, JPA will decide them based on @GeneratedValue
-		Author kate = new Author(0, "Kate", "Kate's life", null);
-		Author johnny = new Author(0, "Johnny", "Johhny's life", null);
+		// Author kate = new Author(0, "Kate", "Kate's life", null);
+		// Author johnny = new Author(0, "Johnny", "Johhny's life", null);
+
+		Author kate = Author.builder().name("Kate").bio("Kate's life").build();
+		Author johnny = Author.builder().name("Johnny").bio("Johhny's life").build();
 
 		authorService.create(kate);
 		authorService.create(johnny);
 
-		bookService.create(new Book(0, "Kate's novel", "Worked so hard for it...", kate));
-		bookService.create(new Book(0, "Kate's second novel", "Already easier!", kate));
-		bookService.create(new Book(0, "Johnny's novel", "I should have been a pianter", johnny));
+		bookService.create(Book.builder().title("Kate's novel").shortDescription("Worked so hard for it...").author(kate).build());
+		bookService.create(Book.builder().title("Kate's second novel").shortDescription("Already easier!").author(kate).build());
+		bookService.create(Book.builder().title("Johnny's novel").shortDescription("I should have been a pianter").author(johnny).build());
 	}
 }

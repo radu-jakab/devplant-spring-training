@@ -10,16 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 // lombok
 @Data
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 // spring
 @Entity
 @Table(name = "AUTHOR")
@@ -37,6 +35,15 @@ public class Author {
 
 	private String bio;
 
-	@OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
+	@JsonManagedReference("authorBooks")
+	@OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
 	private List<Book> books;
+
+	private Author(long id, String name, String bio, List<Book> books) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.bio = bio;
+		this.books = books;
+	}
 }

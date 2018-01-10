@@ -3,9 +3,13 @@
 ## Topics
 0. Pre-requisites
 - use IntelliJ for and IDE if possible
-- have Java 8, maven, npm installed
+- have Java 8, maven, npm, git installed
 
 - discuss HTTP, AOP, Java Reflection
+https://code.tutsplus.com/tutorials/http-the-protocol-every-web-developer-must-know-part-1--net-31177
+http://www.andrewewhite.net/wordpress/2010/03/17/aspectj-annotation-tutorial/
+https://www.sitepoint.com/java-reflection-api-tutorial/
+
 
 1. Spring initializr
 - Create a project using https://start.spring.io
@@ -18,6 +22,7 @@
 - functional requirements
 
 4. Controllers
+https://docs.spring.io/spring/docs/3.0.0.M4/reference/html/ch15s02.html
 - create package controller
 - maven dependencies: lombok
 - lombok
@@ -80,32 +85,77 @@ spring:
 9. The bottom-up approach
 - @OneToOne, @ElementCollection
 - Lending entity and repo, services and controller; methods: show all lendings, show all lendings for client
-- Library entity and repo, services and controller; methods: show all books, change stocks, lend book, return book
+- Library entity and repo, services and controller; methods: show stocks, change stocks, lend book, return book
 - remove DataInitializer, create library record, some authors and books in seedData.sql 
 - @Transactional
 
 10. Logging
+- add @Slf4j annotation on all controllers
+- log entry into every controller endpoint
+- set logging.file in application.yml, create /logs folder
+- add & configure logback-spring.xml file
+- what the log entries look like, how to turn them on & off
 
-10. Validation
+11. Validation
+http://beanvalidation.org/1.0/spec/
+- @NotNull, @NotEmpty, @Size, @Future, @Past
+- javax.validation.constraints
+- Author.name, 2<length<128
+- Author.bio, not null, not empty
+- Lending.lendingTime, past
+- Lending.dueReturnDate, future
+- @Valid on controllers
 
-10. Converters
+- create package com.devplant.springbeginnertraining.validators
+- BookValidator + BookService, AuthorValidator + AuthorService
+
+- honorable  mention: JSR-303
+
+12. i18n
+
+13. Converters
 - DTOs and MapStruct
 
-11. Spring Profiles
+14. Spring Profiles
+https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#boot-features-profiles
 
-12. Security Configuration
+15. Caching
+http://www.baeldung.com/spring-cache-tutorial
+
+
+16. Configuration classes
+https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#using-boot-configuration-classes
+https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#boot-features-developing-auto-configuration
+
+17. Security Configuration
 - authenticated(), adding users
 - endpoint authorization config
 - CSRF attacks
 - JDBC userstore
 
-13. Adding the GUI app
+read:
+https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#production-ready-endpoints
 
-14. Error handling
 
-15. Async operations, Spring scheduler
+18. Adding the GUI app
 
-16. Stuff that cool kids also do
+19. Error handling
+- @ControllerAdvice
+
+20. Unit testing
+
+21. Integration testing
+
+22. Async operations, Spring scheduler
+
+23. Metrics
+https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#production-ready-metrics
+
+24. Web-sockets
+https://docs.spring.io/spring/docs/5.0.3.BUILD-SNAPSHOT/spring-framework-reference/web.html#websocket
+
+25. Stuff that cool kids also do
 - elastic search repos
+https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#boot-features-elasticsearch
 - docker integration
--
+

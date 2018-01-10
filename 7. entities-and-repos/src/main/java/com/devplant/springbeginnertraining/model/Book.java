@@ -6,18 +6,16 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 //lombok
 @Data
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@ToString(exclude = "author")
 // spring
 @Entity
 @Table(name = "BOOK")
@@ -33,7 +31,15 @@ public class Book {
 
 	private String shortDescription;
 
-	@JsonIgnore
-	@ManyToOne()
+	@JsonBackReference("authorBooks")
+	@ManyToOne
 	private Author author;
+
+	private Book(long id, String title, String shortDescription, Author author) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.shortDescription = shortDescription;
+		this.author = author;
+	}
 }

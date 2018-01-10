@@ -14,11 +14,11 @@ import com.devplant.springbeginnertraining.model.Book;
 public class AuthorService {
 
 	// create some static objects to play with
-	public static final Author AUTHOR1 = new Author(1, "Scooby Doo", "Shaggy's BFF", null);
-	public static final Author AUTHOR2 = new Author(2, "Fred Flintstone", "Strong as a rock!", null);
-	public static final Book BOOK1 = new Book(1, "Shaggy's BFF", "A ruff novel", AUTHOR1);
-	public static final Book BOOK2 = new Book(2, "A dog's life", "Some other ruff novel", AUTHOR1);
-	public static final Book BOOK3 = new Book(3, "Rock bottom", "You know, that's life...", AUTHOR2);
+	public static final Author AUTHOR1 = Author.builder().id(1).name("Scooby Doo").bio("The detective dog").build();
+	public static final Author AUTHOR2 = Author.builder().id(1).name("Fred Flintstone").bio("Strong as a rock!").build();
+	public static final Book BOOK1 = Book.builder().id(1).title("Shaggy's BFF").shortDescription("A ruff novel").author(AUTHOR1).build();
+	public static final Book BOOK2 = Book.builder().id(1).title("A dog's life").shortDescription("Some other ruff novel").author(AUTHOR1).build();
+	public static final Book BOOK3 = Book.builder().id(1).title("Rock bottom").shortDescription("You know, that's life...").author(AUTHOR2).build();
 
 	// a list to hold all authors
 	public static final List<Author> AUTHORS = new ArrayList<>();
@@ -59,8 +59,7 @@ public class AuthorService {
 	}
 
 	/**
-	 * Updates an author based on the entity provided, assuming an author with the
-	 * same id exists. Returns the author if the ID was matched, or null otherwise
+	 * Updates an author based on the entity provided, assuming an author with the same id exists. Returns the author if the ID was matched, or null otherwise
 	 */
 	public Author update(Author author) {
 		Author existing = getOne(author.getId());
@@ -75,8 +74,7 @@ public class AuthorService {
 	}
 
 	/**
-	 * Deletes the author with the given id. Returns false if an author was not
-	 * found, and true if an author was found and deleted
+	 * Deletes the author with the given id. Returns false if an author was not found, and true if an author was found and deleted
 	 */
 	public boolean delete(long id) {
 		Author existing = getOne(id);
