@@ -117,21 +117,26 @@ http://beanvalidation.org/1.0/spec/
 - in application classes, replace strings with MessageService.getMessage(...)
 - add the WebMVCConfig configuration class; configure locale change and messageSource
 
-13. Converters
+13. Error handling
+- create class GenericErrorHandler, use @ControllerAdvice
+- @ExceptionHandler, @ResponseStatus
+- create LibraryException
+- create ErrorMessageDTO
+
+14. Converters
 - DTOs and MapStruct
 
-14. Spring Profiles
+15. Spring Profiles
 https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#boot-features-profiles
 
-15. Caching
+16. Caching
 http://www.baeldung.com/spring-cache-tutorial
 
-
-16. Configuration classes
+17. Configuration classes
 https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#using-boot-configuration-classes
 https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#boot-features-developing-auto-configuration
 
-17. Security Configuration
+18. Security Configuration
 - authenticated(), adding users
 - endpoint authorization config
 - CSRF attacks
@@ -140,11 +145,7 @@ https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#b
 read:
 https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#production-ready-endpoints
 
-
-18. Adding the GUI app
-
-19. Error handling
-- @ControllerAdvice
+19. Adding the GUI app
 
 20. Unit testing
 
