@@ -124,6 +124,10 @@ http://beanvalidation.org/1.0/spec/
 - create ErrorMessageDTO
 
 14. Converters
+- seedData.sql -> add library stuff
+- spring.datasource.sql-script-encoding=UTF-8
+- 
+
 - DTOs and MapStruct
 
 15. Spring Profiles
