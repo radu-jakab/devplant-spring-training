@@ -137,6 +137,9 @@ http://beanvalidation.org/1.0/spec/
 https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#boot-features-profiles
 
 16. Caching
+- @EnableCaching
+- logging with org.springframework.cache + TRACE
+- @Cacheable, @CacheEvict, @Caching
 http://www.baeldung.com/spring-cache-tutorial
 
 17. Configuration classes

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<include resource="org/springframework/boot/logging/logback/base.xml" />
+
+	<logger name="org.hibernate" level="ERROR" />
+	<logger name="springfox.documentation" level="ERROR" />
+	<logger name="org.springframework.cache" level="TRACE" />
+	
+	<logger name="com.devplant" level="ALL" />
+</configuration>
