@@ -2,12 +2,16 @@ package com.devplant.springbeginnertraining.service;
 
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.devplant.springbeginnertraining.dto.BookStockDTO;
 import com.devplant.springbeginnertraining.exceptions.LibraryException;
+import com.devplant.springbeginnertraining.mapper.BookStockMapper;
 import com.devplant.springbeginnertraining.model.Book;
 import com.devplant.springbeginnertraining.model.Lending;
 import com.devplant.springbeginnertraining.model.Library;
@@ -18,6 +22,9 @@ import com.devplant.springbeginnertraining.repo.LibraryRepository;
 public class LibraryService {
 
 	public static final long LIBRARY_ID = 1;
+
+	@Autowired
+	BookStockMapper bookStockMapper;
 
 	@Autowired
 	private MessagesService messages;
@@ -31,12 +38,16 @@ public class LibraryService {
 	@Autowired
 	private LendingRepository lendingRepo;
 
-	public Map<Book, Integer> getAllBooksAndStocks() {
+	public List<BookStockDTO> getAllBooksAndStocks() {
 		Library lib = libraryRepo.findOne(LIBRARY_ID);
 		if (lib == null)
 			throw new IllegalArgumentException(messages.getMessage("library.error.missing", LIBRARY_ID));
 
-		return lib.getStocks();
+		Map<Book, Integer> stocks = lib.getStocks();
+
+		return stocks.keySet().stream().map((book) -> {
+			return bookStockMapper.getAsBookStock(book, stocks.get(book));
+		}).collect(Collectors.toList());
 	}
 
 	public void changeStocks(Book book, int newStock) {
@@ -73,15 +84,9 @@ public class LibraryService {
 		libraryRepo.save(lib);
 
 		// create lending record
-		Lending result = Lending.builder()
-			.id(0)
-			.book(bookEntity)
-			.lendingTime(ZonedDateTime.now())
-			.dueReturnDate(dueDate)
-			.clientName(clientName)
-			.library(lib)
-			.build();
-		
+		Lending result = Lending.builder().id(0).book(bookEntity).lendingTime(ZonedDateTime.now()).dueReturnDate(dueDate).clientName(clientName).library(lib)
+				.build();
+
 		return result;
 	}
 

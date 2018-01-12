@@ -1,6 +1,6 @@
 package com.devplant.springbeginnertraining.rest;
 
-import java.util.Map;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.devplant.springbeginnertraining.dto.BookStockDTO;
+import com.devplant.springbeginnertraining.dto.LendingDTO;
 import com.devplant.springbeginnertraining.model.Book;
 import com.devplant.springbeginnertraining.model.Lending;
 import com.devplant.springbeginnertraining.service.LibraryService;
@@ -30,7 +32,7 @@ public class LibraryController {
 	private LibraryService libraryService;
 
 	@GetMapping
-	public Map<Book, Integer> getAllBooksAndStocks() {
+	public List<BookStockDTO> getAllBooksAndStocks() {
 		log.debug("REST call - getting all books and stocks");
 
 		return libraryService.getAllBooksAndStocks();
@@ -44,7 +46,7 @@ public class LibraryController {
 	}
 
 	@PutMapping("lendBook")
-	public Lending lendBook(@Valid @RequestBody Lending lending) {
+	public Lending lendBook(@Valid @RequestBody LendingDTO lending) {
 		log.debug("REST call - lending book: {}", lending);
 
 		return libraryService.lendBook(lending.getBook(), lending.getClientName(), lending.getDueReturnDate());

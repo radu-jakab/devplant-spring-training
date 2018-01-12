@@ -126,9 +126,10 @@ http://beanvalidation.org/1.0/spec/
 14. Converters
 - seedData.sql -> add library stuff
 - spring.datasource.sql-script-encoding=UTF-8
-- 
-
-- DTOs and MapStruct
+- create & use LendingDTO
+- create sample converter LendingMapper
+- add MapStruct in pom.xml; rewrite converter LendingMapper
+- create & use BookStockDTO, BookStockMapper
 
 15. Spring Profiles
 https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#boot-features-profiles

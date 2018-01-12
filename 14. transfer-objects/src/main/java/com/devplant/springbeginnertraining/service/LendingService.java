@@ -1,15 +1,21 @@
 package com.devplant.springbeginnertraining.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.devplant.springbeginnertraining.dto.LendingDTO;
+import com.devplant.springbeginnertraining.mapper.LendingMapper;
 import com.devplant.springbeginnertraining.model.Lending;
 import com.devplant.springbeginnertraining.repo.LendingRepository;
 
 @Service
 public class LendingService {
+
+	@Autowired
+	LendingMapper lendingMapper;
 
 	@Autowired
 	private LendingRepository lendingRepo;
@@ -28,8 +34,12 @@ public class LendingService {
 	 *            the client to retrieve lended books for
 	 * @return the list of lended books
 	 */
-	public List<Lending> getAllLendingsForClient(String clientName) {
-		return lendingRepo.findAllByClientName(clientName);
+	public List<LendingDTO> getAllLendingsForClient(String clientName) {
+		List<Lending> lendings = lendingRepo.findAllByClientName(clientName);
+
+		return lendings.stream().map((lending) -> {
+			return lendingMapper.lendingToLendingDTO(lending);
+		}).collect(Collectors.toList());
 	}
 
 }

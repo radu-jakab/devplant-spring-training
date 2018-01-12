@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.devplant.springbeginnertraining.dto.LendingDTO;
 import com.devplant.springbeginnertraining.model.Lending;
 import com.devplant.springbeginnertraining.service.LendingService;
 
@@ -17,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("lending")
 @ResponseBody
-//log4j capability added via lombok
+// log4j capability added via lombok
 @Slf4j
 public class LendingController {
 
@@ -31,9 +32,9 @@ public class LendingController {
 	}
 
 	@GetMapping("/forClient")
-	public List<Lending> getLendedBooksForClient(@RequestParam String name) {
+	public List<LendingDTO> getLendedBooksForClient(@RequestParam String name) {
 		log.debug("REST call - getting all lendings for client name={}", name);
-		
+
 		return lendingService.getAllLendingsForClient(name);
 	}
 
