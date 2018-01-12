@@ -2,6 +2,7 @@ package com.devplant.springbeginnertraining.rest;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,6 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devplant.springbeginnertraining.model.Book;
+import com.devplant.springbeginnertraining.service.BooksService;
+
+import lombok.extern.slf4j.Slf4j;
 
 //tells Spring this class defines REST endpoints
 @RestController
@@ -24,7 +28,12 @@ import com.devplant.springbeginnertraining.model.Book;
 // annotates all methods with @ResponseBody, making their return value define
 // the body of the HTTP response
 @ResponseBody
+//log4j capability added via lombok
+@Slf4j
 public class BookController {
+
+	@Autowired
+	private BooksService bookService;
 
 	/**
 	 * Creates an HTTP GET mapping on "/book/{id}", that returns the book entity for
@@ -36,8 +45,17 @@ public class BookController {
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<Book> getOne(@PathVariable("id") long id) {
-		// does nothing yet, returns HTTP 200 always
-		return new ResponseEntity<>(HttpStatus.OK);
+		log.debug("REST call - getting book with id {}", id);
+		
+		// use the service to do the work
+		Book result = bookService.getOne(id);
+
+		// create the response depending on the result
+		if (result != null) {
+			return new ResponseEntity<>(result, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 
 	/**
@@ -48,8 +66,12 @@ public class BookController {
 	 */
 	@GetMapping()
 	public ResponseEntity<List<Book>> getAll() {
-		// does nothing yet, returns HTTP 200 always
-		return new ResponseEntity<>(HttpStatus.OK);
+		log.debug("REST call - getting all books");
+		
+		// use the service to do the work
+		List<Book> result = bookService.getAll();
+
+		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 
 	/**
@@ -63,8 +85,13 @@ public class BookController {
 	 */
 	@PostMapping("/add")
 	public ResponseEntity<Book> create(@RequestBody Book book) {
-		// does nothing yet, returns HTTP 200 always
-		return new ResponseEntity<>(HttpStatus.OK);
+		log.debug("REST call - adding book: {}", book);
+		
+		// use the service to do the work
+		Book result = bookService.create(book);
+
+		// create the response
+		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 
 	/**
@@ -78,8 +105,17 @@ public class BookController {
 	 */
 	@PutMapping("/update")
 	public ResponseEntity<Book> update(@RequestBody Book book) {
-		// does nothing yet, returns HTTP 200 always
-		return new ResponseEntity<>(HttpStatus.OK);
+		log.debug("REST call - updating book: {}", book);
+		
+		// use the service to do the work
+		Book result = bookService.update(book);
+
+		// create the response depending on the result
+		if (result != null) {
+			return new ResponseEntity<>(result, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 
 	/**
@@ -93,7 +129,13 @@ public class BookController {
 	 */
 	@DeleteMapping("/delete")
 	public ResponseEntity<String> delete(@RequestParam("id") long id) {
-		// does nothing yet, returns HTTP 200 always
-		return new ResponseEntity<>(HttpStatus.OK);
+		log.debug("REST call - deleting book with id {}", id);
+		
+		// use the service to do the work, respond depending on the result
+		if (bookService.delete(id)) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 }

@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.devplant</groupId>
-	<artifactId>14-transfer-objects</artifactId>
+	<artifactId>15-profiles</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>14-transfer-objects</name>
+	<name>15-profiles</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>

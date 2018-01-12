@@ -132,6 +132,8 @@ http://beanvalidation.org/1.0/spec/
 - create & use BookStockDTO, BookStockMapper
 
 15. Spring Profiles
+- application-dev.yml
+- -Dspring.profiles.active=dev
 https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#boot-features-profiles
 
 16. Caching

@@ -2,6 +2,9 @@ package com.devplant.springbeginnertraining.rest;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,6 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devplant.springbeginnertraining.model.Author;
+import com.devplant.springbeginnertraining.service.AuthorService;
+
+import lombok.extern.slf4j.Slf4j;
 
 //tells Spring this class defines REST endpoints
 @RestController
@@ -24,7 +30,12 @@ import com.devplant.springbeginnertraining.model.Author;
 // annotates all methods with @ResponseBody, making their return value define
 // the body of the HTTP response
 @ResponseBody
+// log4j capability added via lombok
+@Slf4j
 public class AuthorController {
+
+	@Autowired
+	private AuthorService authorService;
 
 	/**
 	 * Creates an HTTP GET mapping on "/author/{id}", that returns the author entity
@@ -36,8 +47,17 @@ public class AuthorController {
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<Author> getOne(@PathVariable("id") long id) {
-		// does nothing yet, returns HTTP 200 always
-		return new ResponseEntity<>(HttpStatus.OK);
+		log.debug("REST call - getting one author with id {}", id);
+
+		// use the service to do the work
+		Author result = authorService.getOne(id);
+
+		// create the response depending on the result
+		if (result != null) {
+			return new ResponseEntity<>(result, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 
 	/**
@@ -48,8 +68,11 @@ public class AuthorController {
 	 */
 	@GetMapping()
 	public ResponseEntity<List<Author>> getAll() {
-		// does nothing yet, returns HTTP 200 always
-		return new ResponseEntity<>(HttpStatus.OK);
+		log.debug("REST call - getting all authors");
+
+		// use the service to do the work
+		List<Author> authors = authorService.getAll();
+		return new ResponseEntity<>(authors, HttpStatus.OK);
 	}
 
 	/**
@@ -62,9 +85,14 @@ public class AuthorController {
 	 * @return the author entity created
 	 */
 	@PostMapping("/add")
-	public ResponseEntity<Author> create(@RequestBody Author author) {
-		// does nothing yet, returns HTTP 200 always
-		return new ResponseEntity<>(HttpStatus.OK);
+	public ResponseEntity<Author> create(@Valid @RequestBody Author author) {
+		log.debug("REST call - adding author: {}", author);
+
+		// use the service to do the work
+		Author result = authorService.create(author);
+
+		// create the response
+		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 
 	/**
@@ -77,9 +105,18 @@ public class AuthorController {
 	 * @return the author entity updated, or HTTP 404 error if not found
 	 */
 	@PutMapping("/update")
-	public ResponseEntity<Author> update(@RequestBody Author author) {
-		// does nothing yet, returns HTTP 200 always
-		return new ResponseEntity<>(HttpStatus.OK);
+	public ResponseEntity<Author> update(@Valid @RequestBody Author author) {
+		log.debug("REST call - updating author: {}", author);
+
+		// use the service to do the work
+		Author result = authorService.update(author);
+
+		// create the response depending on the result
+		if (result != null) {
+			return new ResponseEntity<>(result, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 
 	/**
@@ -94,7 +131,13 @@ public class AuthorController {
 	 */
 	@DeleteMapping("/delete")
 	public ResponseEntity<String> delete(@RequestParam("id") long id) {
-		// does nothing yet, returns HTTP 200 always
-		return new ResponseEntity<>(HttpStatus.OK);
+		log.debug("REST call - deleting author with id {}", id);
+
+		// use the service to do the work, respond depending on the result
+		if (authorService.delete(id)) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 }
