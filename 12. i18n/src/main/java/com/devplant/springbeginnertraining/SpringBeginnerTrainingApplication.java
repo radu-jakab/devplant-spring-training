@@ -2,12 +2,9 @@ package com.devplant.springbeginnertraining;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 // configuration annotation that marks this as a runnable Spring Boot application
 @SpringBootApplication
-// allow JPA repos
-@EnableJpaRepositories
 public class SpringBeginnerTrainingApplication {
 
 	// Spring runs as a standalone java application, started using a "main" method

@@ -3,12 +3,10 @@ package com.devplant.springbeginnertraining;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 // configuration annotation that marks this as a runnable Spring Boot application
 @SpringBootApplication
-// allow JPA repos
-@EnableJpaRepositories
+// configuration annotation that makes caching available
 @EnableCaching
 public class SpringBeginnerTrainingApplication {
 

@@ -75,7 +75,6 @@ spring:
 - author, book as entities
 - create package repo
 - author, book repos
-- @EnableJpaRepositories
 - relink services to use the repos
 
 8. Seeding data
