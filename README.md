@@ -42,7 +42,6 @@ https://docs.spring.io/spring/docs/3.0.0.M4/reference/html/ch15s02.html
 - @Configuration class
 ```
 @Configuration
-@EnableSwagger2
 public class SwaggerConfig {
 	@Bean
 	public Docket api() {

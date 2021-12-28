@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringBeginnerTrainingApplication {
 
-	// Spring runs as a standalone java application, started using a "main" method
-	public static void main(String[] args) {
+    // Spring runs as a standalone java application, started using a "main" method
+    public static void main(String[] args) {
 
-		// tells Spring to start all configured components
-		SpringApplication.run(SpringBeginnerTrainingApplication.class, args);
-	}
+        // tells Spring to start all configured components
+        SpringApplication.run(SpringBeginnerTrainingApplication.class, args);
+    }
 }

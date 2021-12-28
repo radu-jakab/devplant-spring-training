@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SpringBeginnerTrainingApplication {
 
-	// Spring runs as a standalone java application, started using a "main" method
-	public static void main(String[] args) {
+    // Spring runs as a standalone java application, started using a "main" method
+    public static void main(String[] args) {
 
-		// tells Spring to start all configured components
-		SpringApplication.run(SpringBeginnerTrainingApplication.class, args);
-	}
+        // tells Spring to start all configured components
+        SpringApplication.run(SpringBeginnerTrainingApplication.class, args);
+    }
 
-	// maps HTTP calls to "/hello" to the execution of this method
-	@RequestMapping("/hello")
-	public String helloWorld() {
-		return "Hello World!";
-	}
+    // maps HTTP calls to "/hello" to the execution of this method
+    @RequestMapping("/hello")
+    public String helloWorld() {
+        return "Hello World!";
+    }
 }
